@@ -1,0 +1,8 @@
+.DS_Store
+.dart_tool/
+*.iml
+.idea
+.packages
+.pub/
+
+build/
