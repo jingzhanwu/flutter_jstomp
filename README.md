@@ -2,9 +2,9 @@
 
 pub地址：https://pub.dev/packages/jstomp
 
-    之前项目上有使用到Stomp协议封装的websocket，端上使用订阅通道的形式，支持ws与http，支持订阅多个通道，
-JStomp是我基于当前项目中的使用和总结开发的一个FLutter 插件，一般中小型的项目中有消息推送，IM等业务场景
-增加进入，下面看JStomp提供的能力。
+之前项目上有使用到Stomp协议封装的websocket，端上使用订阅通道的形式，支持ws与http，支持订阅多个通道，
+JStomp是我基于当前项目中的使用和总结开发的一个FLutter 插件，一般中小型的项目中有消息推送，IM等业务场
+景增加进入，下面看JStomp提供的能力。
     
 1、支持ws方式连接
         
@@ -38,8 +38,10 @@ JStomp是我基于当前项目中的使用和总结开发的一个FLutter 插件
         1、flutter项目的pubspec.yaml文件中引入：
         
         dependencies:
-            jstomp: ^0.0.1
-            
+            jstomp: ^1.0.0
+
+        import 'package:jstomp/jstomp.dart';
+
         2、初始化stomp
              JStomp stomp = JStomp.instance;
              
