@@ -38,7 +38,7 @@ JStomp是我基于当前项目中的使用和总结开发的一个FLutter 插件
         1、flutter项目的pubspec.yaml文件中引入：
         
         dependencies:
-            jstomp: ^1.0.0
+            jstomp: ^1.0.1
 
         import 'package:jstomp/jstomp.dart';
 
