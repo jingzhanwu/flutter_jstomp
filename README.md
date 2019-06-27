@@ -1,54 +1,39 @@
 # jstomp
 
-A new Flutter plugin for stomp
+pub地址：https://pub.dev/packages/jstomp
 
-## Getting Started
-
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android.
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
-
-JStomp
-
-        之前项目上有使用到Stomp协议封装的websocket，端上使用订阅通道的形式，支持ws与http，支持订阅多个通道，
-    JStomp是我基于当前项目中的使用和总结开发的一个FLutter 插件，一般中小型的项目中有消息推送，IM等业务场景
-    的都可以使用JStomp库提供解决方案。由于本人是Android开发，所以JStomp目前支持Android，后续有机会会把IOS
-    增加进入，下面看JStomp提供的能力。
+    之前项目上有使用到Stomp协议封装的websocket，端上使用订阅通道的形式，支持ws与http，支持订阅多个通道，
+JStomp是我基于当前项目中的使用和总结开发的一个FLutter 插件，一般中小型的项目中有消息推送，IM等业务场景
+增加进入，下面看JStomp提供的能力。
     
-    一、功能及特点
-        1、支持ws方式连接
+1、支持ws方式连接
         
-        2、支持http方式连接
+2、支持http方式连接
         
-        3、支持连接时的自定义验证参数，如token等
+3、支持连接时的自定义验证参数，如token等
         
-        4、支持同时订阅多个点对点通道
+4、支持同时订阅多个点对点通道
         
-        5、支持同时订阅多个广播通道
+5、支持同时订阅多个广播通道
         
-        6、提供连接、消息、发送等回调监听
+6、提供连接、消息、发送等回调监听
         
-        7、支持发送消息时的自定义消息头
+7、支持发送消息时的自定义消息头
         
-        8、JStomp为单例设计，避免多次初始化和订阅
+8、JStomp为单例设计，避免多次初始化和订阅
         
-        9、可不手动断开连接，程序重新进入重新初始化处理，不会多次订阅
+9、可不手动断开连接，程序重新进入重新初始化处理，不会多次订阅
         
-        10、轻量级接入，使用简单
+10、轻量级接入，使用简单
         
-        11、自动管理心跳，无需使用者自己发送心跳维持长连接
+11、自动管理心跳，无需使用者自己发送心跳维持长连接
         
-        12、支持AndroidX
+12、支持AndroidX
         
-        13、连接失败或者断开连接后默认重试15分钟，重试间隔10秒
+13、连接失败或者断开连接后默认重试15分钟，重试间隔10秒
         
         
-    二、如何使用
+    如何使用
     
         1、flutter项目的pubspec.yaml文件中引入：
         
@@ -159,4 +144,8 @@ JStomp
            
         8、断开连接并销毁资源
             
-           await stomp.destroy(); 
+           await stomp.destroy();
+
+
+
+
