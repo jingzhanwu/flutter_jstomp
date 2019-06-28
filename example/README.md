@@ -7,7 +7,9 @@
   4、添加监听
   5、发送消息
 
+## Example
 
+```
       ///初始化并连接stomp
       Future _initStomp() async {
         if (stomp == null) {
@@ -92,7 +94,9 @@
         return b;
       }
 
-  以上就是整个Stomp库使用的基本步骤。
+```
+
+以上就是整个Stomp库使用的基本步骤。
 
 
 
