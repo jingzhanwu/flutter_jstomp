@@ -105,7 +105,9 @@ class JStomp {
   /// 停止service
   ///
   Future<bool> destroy() async {
-    return _channel.invokeMethod(_NativeMethod.DESTROY);
+    bool b = await _channel.invokeMethod(_NativeMethod.DESTROY);
+    await _closedStreamControllers();
+    return b;
   }
 
   ///
@@ -233,6 +235,24 @@ class JStomp {
         break;
     }
     return Future.value("");
+  }
+
+  ///
+  ///关闭streamcontroller 对象
+  ///
+  Future _closedStreamControllers() async {
+    if (_connectionController != null) {
+      _connectionController.close();
+      _connectionController = null;
+    }
+    if (_messageController != null) {
+      _messageController.close();
+      _messageController = null;
+    }
+    if (_sendController != null) {
+      _sendController.close();
+      _sendController = null;
+    }
   }
 }
 
