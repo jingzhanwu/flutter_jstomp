@@ -6,7 +6,7 @@ pub地址：https://pub.dev/packages/jstomp
 JStomp是我基于当前项目中的使用和总结开发的一个FLutter 插件，一般中小型的项目中有消息推送，IM等业务场
 景增加进入，下面看JStomp提供的能力。
 
-##一、功能及特点
+## 一、功能及特点
 
 1、支持ws方式连接
         
@@ -35,9 +35,9 @@ JStomp是我基于当前项目中的使用和总结开发的一个FLutter 插件
 13、连接失败或者断开连接后默认重试15分钟，重试间隔10秒
         
         
-##二、如何使用
+## 二、如何使用
     
-###1、flutter项目的pubspec.yaml文件中引入
+### 1、flutter项目的pubspec.yaml文件中引入
 
 ```
 dependencies:
@@ -46,23 +46,23 @@ dependencies:
 import 'package:jstomp/jstomp.dart';
 
 ```
-###2、初始化stomp
+### 2、初始化stomp
 
 ```
-JStomp stomp = JStomp.instance;
+    JStomp stomp = JStomp.instance;
 
-//初始化连接的url地址
-String url="ws://192.168.3.25:9000/stompMsg.../...";
+    //初始化连接的url地址
+    String url="ws://192.168.3.25:9000/stompMsg.../...";
 
-//发送消息的url地址
-String sendUrl="sendMessage/android/...";
+    //发送消息的url地址
+    String sendUrl="sendMessage/android/...";
 
-//初始化stomp,成功返回true
-bool b =await stomp.init(url: url, sendUrl: sendUrl);
+    //初始化stomp,成功返回true
+    bool b =await stomp.init(url: url, sendUrl: sendUrl);
 
 ```
 
-###3、打开连接
+### 3、打开连接
 
 ```
  if (b) {
@@ -86,7 +86,7 @@ bool b =await stomp.init(url: url, sendUrl: sendUrl);
    参数closed：是带有一个bool类型的回调函数，代表连接关闭，返回值为false；
 ```
              
-###4、订阅消息通道，支持点对点和广播，支持同时订阅多个通道
+### 4、订阅消息通道，支持点对点和广播，支持同时订阅多个通道
 
 ```
             //点对点通道地址，我这里订阅指定userid的通道
@@ -100,7 +100,7 @@ bool b =await stomp.init(url: url, sendUrl: sendUrl);
 
 ```
 
-###5、设置消息监听器，当有新消息到达时回调，可同时设置点对点和广播回调；回调返回的消息为一个json格式的String，
+### 5、设置消息监听器，当有新消息到达时回调，可同时设置点对点和广播回调；回调返回的消息为一个json格式的String，
            可根据自己的需求对json字串解析。
 
 ```
@@ -118,7 +118,7 @@ bool b =await stomp.init(url: url, sendUrl: sendUrl);
            参数message：是一个json字串，代表本次接受到的消息内容。
 ```
 
-###6、设置发送消息回调监听器,当发送一条stomp消息时，不管此条消息发送成功还是失败，此回调都会将此条消息内容
+### 6、设置发送消息回调监听器,当发送一条stomp消息时，不管此条消息发送成功还是失败，此回调都会将此条消息内容
            回调回来，除此之外还有发送状态.
 
 ```
@@ -133,7 +133,7 @@ bool b =await stomp.init(url: url, sendUrl: sendUrl);
 
 ```
 
-###7、发送消息
+### 7、发送消息
 
 ```
             //使用map构造一个要发送的数据,以下数据是我项目上的消息数据格式，消息字段大家根据自己需求自定义
@@ -167,7 +167,7 @@ bool b =await stomp.init(url: url, sendUrl: sendUrl);
            await stomp.sendMessage(json.encode(msg), header: head);
 ```
 
-###8、断开连接并销毁资源
+### 8、断开连接并销毁资源
 
 ```
      await stomp.destroy();
