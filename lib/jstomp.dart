@@ -166,11 +166,13 @@ class JStomp {
   ///
   Future<String> sendMessage(String message, {Map<String, dynamic> header}) {
     ///將stomp头的value 转换为String类型，
-    Map<String, String> headMap = header.map((String key, value) {
-      return new MapEntry(key, value.toString());
-    });
+    Map<String, String> headMap = new Map();
+    if (header != null) {
+      headMap = header.map((String key, value) {
+        return new MapEntry(key, value.toString());
+      });
+    }
     Map<String, dynamic> params = {"msg": message, "header": headMap};
-
     return _channel.invokeMethod(_NativeMethod.SEND_MESSAGE, params);
   }
 
