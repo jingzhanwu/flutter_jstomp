@@ -196,17 +196,29 @@ class _MyHomePageState extends State<MyHomePage> {
     if (stomp == null) {
       stomp = JStomp.instance;
     }
-    String userId = "104435390701569";
-    String url = "ws://192.168.1.223:9990/message/websocket?personId=" + userId;
-    bool b = await stomp.init(url: url, sendUrl: "/groupMessage/sendMessage");
+    String userId = "1049236705720270849";
+    String url =
+        "ws://10.168.31.223:9080/message/apk-websocket?personId=" + userId;
+
+    bool b =
+        await stomp.init(url: url, sendUrl: "/microGroupMessage/sendMessage");
 
     _initStateChanged(b ? "初始化成功" : "初始化失败");
 
     if (b) {
       ///打开连接
-      await stomp.connection((open) {
+      await stomp.connection((open) async {
         print("连接打开了...$open");
         _connectionStateChanged("Stomp连接打开了...");
+
+        ///订阅点对点通道
+        final String p2p = "/microGroupMessage/" + userId;
+        bool b = await stomp.subscribP2P([p2p]);
+        if (b) {
+          setState(() {
+            _subscriberState = "通道订阅完成：" + p2p;
+          });
+        }
       }, onError: (error) {
         print("连接打开错误了...$error");
         _connectionStateChanged("Stomp连接出错了：$error");
@@ -215,17 +227,6 @@ class _MyHomePageState extends State<MyHomePage> {
         _connectionStateChanged("Stomp连接关闭了...");
       });
     }
-
-    ///订阅点对点通道
-    final String p2p = "/groupMessage/channel/" + userId;
-    await stomp.subscribP2P([p2p]);
-
-    ///订阅广播通道
-    await stomp.subscribBroadcast(["groupBroadcast/message"]);
-
-    setState(() {
-      _subscriberState = "通道订阅完成：" + p2p;
-    });
 
     ///添加消息回调
     await stomp.onMessageCallback((message) {

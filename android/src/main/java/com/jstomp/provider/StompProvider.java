@@ -183,7 +183,7 @@ public class StompProvider {
             return;
         }
         //先断开连接
-       // disconnect();
+        // disconnect();
         //重新初始化
         boolean b = init(mContext, mConfig);
         if (b) {
