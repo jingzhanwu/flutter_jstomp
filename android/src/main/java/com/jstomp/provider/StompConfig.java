@@ -28,11 +28,17 @@ public class StompConfig {
     private Set<String> topicBroadCast = new ArraySet<>();
     /*订阅点对点的地址*/
     private Set<String> topic = new ArraySet<>();
+    /*登陆用户名*/
+    private String login;
+    /*登陆密码*/
+    private String passcode;
 
 
-    public StompConfig(String url, String sendURL) {
+    public StompConfig(String url, String sendURL, String login, String passcode) {
         this.url = url;
         this.sendUrl = sendURL;
+        this.login = login;
+        this.passcode = passcode;
     }
 
 
@@ -94,5 +100,13 @@ public class StompConfig {
      */
     public String connectionUrl() {
         return url;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPasscode() {
+        return passcode;
     }
 }

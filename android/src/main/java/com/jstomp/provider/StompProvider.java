@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -133,7 +134,16 @@ public class StompProvider {
             this.mContext = context;
             this.mConfig = config;
             String url = config.connectionUrl();
-            mStompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, url);
+            if (config.getLogin() != null && config.getPasscode() != null) {
+                Log.i(TAG, "使用用户名密码登陆：" + config.getLogin() + "," + config.getPasscode());
+                Map<String, String> connectHttpHeaders = new HashMap<>();
+                connectHttpHeaders.put("login", config.getLogin());
+                connectHttpHeaders.put("passcode", config.getPasscode());
+                mStompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, url, connectHttpHeaders);
+            } else {
+                Log.i(TAG, "不使用用户名密码登陆");
+                mStompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, url);
+            }
             Log.d(TAG, "Stomp 初始化--url:" + url);
             return true;
         } catch (Exception e) {
@@ -155,7 +165,7 @@ public class StompProvider {
             //如果StompService 已经启动了并且service没有销毁则不用重新启动服务，
             //只需要重新注册Stomp监听即可
             if (!stopService && StompService.GET() != null) {
-                StompService.GET().registerStompConnectionListener();
+                StompService.GET().registerStompConnectionListener(StompProvider.this.mConfig);
                 return this;
             }
 

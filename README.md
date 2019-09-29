@@ -41,9 +41,9 @@ JStomp是我基于当前项目中的使用和总结开发的一个FLutter 插件
 
 ```
 dependencies:
-    jstomp: ^1.1.3
+    jstomp_ext: ^1.0.0
 
-import 'package:jstomp/jstomp.dart';
+import 'package:jstomp/jstomp_ext.dart';
 
 ```
 #### 2、初始化stomp

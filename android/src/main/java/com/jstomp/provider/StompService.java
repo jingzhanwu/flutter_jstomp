@@ -16,10 +16,16 @@ import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import androidx.annotation.Nullable;
+
+import ua.naiksoftware.stomp.dto.StompHeader;
 
 
 /**
@@ -95,7 +101,7 @@ public class StompService extends Service {
             //Android7.1 google修复了此漏洞，暂无解决方法（现状：Android7.1以上app启动后通知栏会出现一条"正在运行"的通知消息）
             startForeground(NOTIFICATION_ID, new Notification());
         }
-        registerStompConnectionListener();
+        registerStompConnectionListener(null);
         return Service.START_STICKY;
     }
 
@@ -103,7 +109,14 @@ public class StompService extends Service {
     /**
      * 添加stomp链接监听
      */
-    public void registerStompConnectionListener() {
+    public void registerStompConnectionListener(StompConfig config) {
+        List<StompHeader> stompHeaderList = null;
+        if (config != null && config.getLogin() != null && config.getPasscode() != null) {
+            stompHeaderList = new ArrayList<>();
+            Log.i(TAG, "StompHeader = " + config.getLogin() + "," + config.getPasscode());
+            stompHeaderList.add(new StompHeader("login", config.getLogin()));
+            stompHeaderList.add(new StompHeader("passcode", config.getPasscode()));
+        }
         StompProvider.get().connect(new StompProvider.OnStompConnectionListener() {
             @Override
             public void onConnectionOpened() {
@@ -121,7 +134,7 @@ public class StompService extends Service {
                 Log.e(TAG, "Stomp 关闭");
                 startConnTimer();
             }
-        });
+        }, stompHeaderList);
     }
 
 

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:jstomp/jstomp.dart';
+import 'package:jstomp_ext/jstomp_ext.dart';
 
 void main() => runApp(MyApp());
 
@@ -197,11 +197,9 @@ class _MyHomePageState extends State<MyHomePage> {
       stomp = JStomp.instance;
     }
     String userId = "1049236705720270849";
-    String url =
-        "ws://10.168.31.223:9080/message/apk-websocket?personId=" + userId;
+    String url = "ws://192.168.137.1:15674/ws";
 
-    bool b =
-        await stomp.init(url: url, sendUrl: "/microGroupMessage/sendMessage");
+    bool b = await stomp.init(url: url, login: "test", passcode: "test");
 
     _initStateChanged(b ? "初始化成功" : "初始化失败");
 

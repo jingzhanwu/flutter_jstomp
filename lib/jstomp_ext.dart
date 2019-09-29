@@ -51,13 +51,19 @@ class JStomp {
   ///
   /// stomp初始化
   ///
-  Future<bool> init({@required String url, @required String sendUrl}) async {
+  Future<bool> init(
+      {@required String url,
+      @required String sendUrl,
+      String login,
+      String passcode}) async {
     ///添加native方法调用处理方法
     _channel.setMethodCallHandler(_nativeHandle);
 
     Map<String, String> params = {
       "url": url,
       "sendUrl": sendUrl,
+      "login": login,
+      "passcode": passcode,
     };
     bool result = await _channel.invokeMethod(_NativeMethod.INIT, params);
     return result;
