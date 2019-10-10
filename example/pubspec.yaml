@@ -17,7 +17,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  jstomp_ext:
+  jstomp:
     path: ../
 
 # For information on the generic Dart part of this file, see the

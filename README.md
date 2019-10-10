@@ -33,6 +33,8 @@ JStomp是我基于当前项目中的使用和总结开发的一个FLutter 插件
 12、支持AndroidX
         
 13、连接失败或者断开连接后默认重试15分钟，重试间隔10秒
+
+14、支持身份认证
         
         
 ## 二、如何使用
@@ -41,9 +43,9 @@ JStomp是我基于当前项目中的使用和总结开发的一个FLutter 插件
 
 ```
 dependencies:
-    jstomp_ext: ^1.0.0
+    jstomp: ^1.1.4
 
-import 'package:jstomp/jstomp_ext.dart';
+import 'package:jstomp/jstomp.dart';
 
 ```
 #### 2、初始化stomp

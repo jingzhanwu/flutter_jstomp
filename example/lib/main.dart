@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:jstomp_ext/jstomp_ext.dart';
+import 'package:jstomp_ext/jstomp.dart';
 
 void main() => runApp(MyApp());
 
